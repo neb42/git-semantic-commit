@@ -1,0 +1,22 @@
+{
+  "name": "git-semantic-commit",
+  "version": "0.0.1",
+  "license": "MIT",
+  "author": {
+    "name": "Ben McAlindin",
+    "email": "bmcalindin@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/neb42/git-semantic-commit.git"
+  },
+  "bin": {
+    "git-semantic-commit": "./index.js"
+  },
+  "engines": {
+    "node": ">=0.11"
+  },
+  "dependencies": {
+    "inquirer": "^4.0.0"
+  }
+}
