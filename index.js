@@ -25,26 +25,28 @@ function readGitConfig() {
 }
 
 function promptUser(callback) {
+  const scopes = readGitConfig().map(s => s.trim());
+  scopes.push('None');
   const questions = [
     {
       name: 'commitType',
       type: 'list',
       message: 'What type of commit is this:',
       choices: [
-        'chore',
-        'docs',
         'feat',
         'fix',
-        'refactor',
         'style',
         'test',
+        'refactor',
+        'chore',
+        'docs',
       ],
     },
     {
       name: 'scope',
       type: 'list',
       message: 'What is the scope of this commit:',
-      choices: [ 'None' ].concat(readGitConfig()),
+      choices: scopes,
     },
     {
       name: 'message',
@@ -65,7 +67,7 @@ function promptUser(callback) {
 function run() {
   promptUser(function() {
     const { commitType, scope, message } = arguments['0'];
-    const result = execSync(`git commit -m '${commitType.trim()}(${scope.trim()}): ${message.trim()}'`);
+    const result = execSync(`git commit -m '${commitType}(${scope}): ${message}'`);
     console.info(result.toString('utf8'));
   });
 }
